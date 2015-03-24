@@ -1,5 +1,87 @@
 #!/bin/bash
 
+###################################################
+# Unicorn / Nginx
+###################################################
+
+# Start unicorn by app name
+function start_app {
+  local current_dir=$(pwd)
+  local app="${1}"
+  local app_dir="/srv/${1}"
+  local app_pidfile="${app_dir}/tmp/unicorn.pid"
+  local app_logfile="${app_dir}/log/unicorn.stderror.log"
+  if [ -d "/srv/${1}" ]; then
+    cd $app_dir
+    unicorn_rails -c config/unicorn.rb -D
+    if [ -e app_pidfile ]; then
+      local pid=$(cat ${app_pidfile})
+      if [ -d "/proc/${pid}" ]; then
+        echo "Unicorn process started for ${app} with pid ${pid}\n"
+      else
+        echo "Couldn't find process for pid ${pid}... Check ${app_logfile} for details.\n"
+      fi
+    else
+      echo "Couldn't find ${app_pidfile}... Check ${app_logfile} for details.\n"
+    fi
+  else
+    echo "Couldn't find app ${app} in /srv\n"
+  fi
+  if [ "$(pwd)" != "${current_dir}" ]; then
+    cd current_dir
+  fi
+}
+
+# Stop unicorn by app name
+function stop_app {
+  local current_dir=$(pwd)
+  local app="${1}"
+  local app_dir="/srv/${1}"
+  local app_pidfile="${app_dir}/tmp/unicorn.pid"
+  if [ -d "/srv/${1}" ]; then
+    if [ -e app_pidfile ]; then
+      local pid=$(cat ${app_pidfile})
+      if [ -d "/proc/${pid}" ]; then
+        kill -QUIT ${pid}
+        echo "QUIT signal sent to pid ${pid}"
+      else
+        echo "Couldn't find process for pid ${pid}! Check that your application is running."
+      fi
+    else
+      echo "Couldn't find ${app_pidfile}...\n"
+    fi
+  else
+    echo "Couldn't find app ${app} in /srv\n"
+  fi
+}
+
+# Toggle Server-Wide 503 Page
+function maintenance {
+  if [ "${1}" == "on" ] && [ -e /etc/nginx/nginx.conf.503 ]; then
+    sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.original
+    sudo mv /etc/nginx/nginx.conf.503 /etc/nginx/nginx.conf
+    sudo nginx -s reload
+    echo "503 on\n"
+  elif [ "${1}" == "off" ] && [ -e /etc/nginx/nginx.conf.original ]; then
+    sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.503
+    sudo mv /etc/nginx/nginx.conf.original /etc/nginx/nginx.conf
+    sudo nginx -s reload
+    echo "503 off\n"
+  else
+    echo "no action taken\n"
+  fi
+}
+
+# TODO: # Start all Unicorns
+function start_unicorns {
+  echo "todo"
+}
+
+# Kill all Unicorns
+function kill_unicorns {
+  ps aux | grep 'unicorn' | awk '{print $2}' | xargs sudo kill -9
+}
+
 ###########################
 # Dotfiles
 ###########################
@@ -30,22 +112,5 @@ function dotfiles {
     # If exists, delete link, restore latest backup.
   else
     cd "${DOTFILES}"
-  fi
-}
-
-#   ln -s "${DOTFILES}/config/.gitconfig" "${HOME}/.gitconfig"
-
-###########################
-# Funny Or Die
-###########################
-
-function fod {
-  cd "${HOME}/Dev/funnyordie"
-  if [[ $1 == "restart" || $1 == "r" ]]
-  then
-    sudo powify server restart
-  elif [[ $1 == "t" || $1 == "tail" ]]
-  then
-    tail -f "${HOME}/Dev/funnyordie/log/development.log"
   fi
 }
