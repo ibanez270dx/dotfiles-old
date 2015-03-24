@@ -25,7 +25,7 @@ alias be="bundle exec"   # Bundler
 
 # Temporary
 alias giannacodes="cd /srv/gianna.codes"
-alias superpups="cd /srv/superpups"
+alias superpups="cd /srv/SuperPups"
 
 ##################################################
 # Dotfiles
