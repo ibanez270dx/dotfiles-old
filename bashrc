@@ -20,4 +20,4 @@ for extension in $DOTFILES/extensions/*/; do
 done
 
 # Initialize
-source $DOTFILES/bash/initialize
+source $DOTFILES/bash/initializers
