@@ -1,0 +1,14 @@
+#!/bin/bash
+
+####################################
+# Environment Variables
+####################################
+
+# System
+export EDITOR=vi
+
+# Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# Rbenv (Ruby Environment management)
+export PATH="$HOME/.rbenv/bin:$PATH"

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+##################################################
+# System
+##################################################
+
+alias c="clear"
+alias h="history"
+alias l="ls -alshGt"
+alias ip="ifconfig | grep \"inet \" | grep -v 127.0.0.1 | cut -d\  -f2"
+alias flushdscache="dscacheutil -flushcache"
+alias hosts="sudo ${EDITOR} /etc/hosts"
+
+##################################################
+# Development
+##################################################
+
+alias dev="cd ${HOME}/Dev"
+alias hu="cd ${HOME}/Dev/humani.se"
+alias ow="cd ${HOME}/Dev/overwine.io"
+alias mc="cd ${HOME}/Dev/moneyclip"
+alias superpups="cd ${HOME}/Dev/SuperPups"
+alias bb="cd ${HOME}/Dev/BlogBox"
+
+alias be="bundle exec"                       # Bundler
+alias rb="rbenv"                             # RbEnv
+alias powr="touch ${HOME}/.pow/restart.txt"  # Pow
+
+##################################################
+# Dotfiles
+##################################################
+
+# alias dotfiles="cd ${DOTFILES}"
+alias ea="${EDITOR} ${DOTFILES}/bash/aliases && reload"    # Edit Aliases
+alias ef="${EDITOR} ${DOTFILES}/bash/functions && reload"  # Edit Functions
+alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"  # Edit Variables
+alias reload="source ${HOME}/.bash_profile"
+
+##################################################
+# Miscellaneous
+##################################################
+
+alias m="cmatrix"

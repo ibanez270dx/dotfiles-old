@@ -1,0 +1,19 @@
+######################################################
+# List of Github users for switching.
+#  requires name, email,
+#
+#  jeff:
+#    name: Jeff Miller
+#    email: jeff@humani.se
+#    private_key: /absolute/path/to/private/key
+#######################################################
+
+jeff:
+  name: Jeff Miller
+  email: loadeddesigns@gmail.com
+  private_key: ~/.ssh/id_rsa
+
+gianna:
+  name: Gianna Fusaro
+  email: giannafusaro389@gmail.com
+  private_key: ~/.ssh/id_rsa_gianna

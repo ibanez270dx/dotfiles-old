@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Initialize github user switching bash extension.
+#
+#  Add Github users to YAML file:
+#   > github-user --config
+#
+#  Switch active Github user:
+#   > github-user <key>
+
+function github-user {
+  local extension_path=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+  if [[ $1 == "--config" ]]
+  then
+    $EDITOR "${extension_path}/config.yml"
+  else
+    ruby "${extension_path}/github_user.rb" $1
+  fi
+}

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+###########################
+# Dotfiles
+###########################
+
+# TODO: link function
+# * should comment out all bash initialization scripts and source the .dotfile version
+
+# TODO: unlink function
+# * should remove sourcing of .dotfile initializers and uncomment bash initialization scripts
+
+function dotfiles {
+  if [[ $1 == "link" ]]
+  then
+    timestamp=$(($(date +'%s * 1000 + %-N / 1000000')))
+    for dotfile in $DOTFILES/config/*; do
+      local target="${HOME}/.${dotfile##*/}"
+      if [ -f $target ]; then
+        mv $target "${target}.backup.${timestamp}"
+        echo "${target} exists! Creating backup..."
+      fi
+      ln -s $dotfile $target
+      echo -e "${dotfile##*/} linked successfully\n"
+    done
+  elif [[ $1 == "unlink" ]]
+  then
+    echo "todo"
+    # Iterate through home folder to find backup conf files for dotfiles/config.
+    # If exists, delete link, restore latest backup.
+  else
+    cd "${DOTFILES}"
+  fi
+}
+
+#   ln -s "${DOTFILES}/config/.gitconfig" "${HOME}/.gitconfig"
+
+###########################
+# Funny Or Die
+###########################
+
+function fod {
+  cd "${HOME}/Dev/funnyordie"
+  if [[ $1 == "restart" || $1 == "r" ]]
+  then
+    sudo powify server restart
+  elif [[ $1 == "t" || $1 == "tail" ]]
+  then
+    tail -f "${HOME}/Dev/funnyordie/log/development.log"
+  fi
+}

@@ -1,0 +1,6 @@
+export POW_DOMAINS=local,dev,test
+export POW_TLD=dev
+export POW_WORKERS=6
+
+# Make sure POW uses RbEnv
+export PATH="/usr/local/opt/rbenv/shims:/usr/local/opt/rbenv/bin:$PATH"
