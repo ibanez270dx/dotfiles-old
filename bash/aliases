@@ -34,7 +34,7 @@ alias powr="touch ${HOME}/.pow/restart.txt"  # Pow
 alias ea="${EDITOR} ${DOTFILES}/bash/aliases && reload"    # Edit Aliases
 alias ef="${EDITOR} ${DOTFILES}/bash/functions && reload"  # Edit Functions
 alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"  # Edit Variables
-alias reload="source ${HOME}/.bash_profile"
+alias reload="source ${HOME}/.bashrc"
 
 ##################################################
 # Miscellaneous
