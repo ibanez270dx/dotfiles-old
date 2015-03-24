@@ -1,5 +1,5 @@
 Dotfiles
 ====
-Originally forked from Jade Tucker (jadeatucker).
+Configuration files and extensions for bash, git, & vi.
 
-FIXME: README is out-of-date.  
+branch: production/faraday
