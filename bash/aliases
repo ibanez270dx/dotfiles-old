@@ -31,9 +31,11 @@ alias powr="touch ${HOME}/.pow/restart.txt"  # Pow
 ##################################################
 
 # alias dotfiles="cd ${DOTFILES}"
-alias ea="${EDITOR} ${DOTFILES}/bash/aliases && reload"    # Edit Aliases
-alias ef="${EDITOR} ${DOTFILES}/bash/functions && reload"  # Edit Functions
-alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"  # Edit Variables
+alias ea="${EDITOR} ${DOTFILES}/bash/aliases && reload"       # Edit Aliases
+alias ef="${EDITOR} ${DOTFILES}/bash/functions && reload"     # Edit Functions
+alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"     # Edit Variables
+alias es="${EDITOR} ${DOTFILES}/bash/secrets && reload"       # Edit Secrets
+alias ei="${EDITOR} ${DOTFILES}/bash/initializers && reload"  # Edit Initializers
 alias reload="source ${HOME}/.bashrc"
 
 ##################################################

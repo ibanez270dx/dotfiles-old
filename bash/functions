@@ -1,28 +1,6 @@
 #!/bin/bash
 
 ###########################
-# Utility
-###########################
-
-# Replaces whitespaces with underscores for
-# every file in the specified directory.
-function replace_whitespace {
-  local renamed=0
-  if [ "${1}" ] && [ -d "${1}" ]; then
-    for filename in "${1}"/*; do
-      echo "${filename}" | grep -q " "
-      if [ $? -eq 0 ]; then
-        mv "${filename}" $(echo "${filename}" | sed -e "s/ /_/g")
-        let renamed+=1
-      fi
-    done
-    echo "${renamed} file(s) renamed."
-  else
-    echo "Invalid path."
-  fi
-}
-
-###########################
 # Funny Or Die
 ###########################
 
@@ -70,4 +48,24 @@ function dotfiles {
   fi
 }
 
-#   ln -s "${DOTFILES}/config/.gitconfig" "${HOME}/.gitconfig"
+###########################
+# Utility
+###########################
+
+# Replaces whitespaces with underscores for
+# every file in the specified directory.
+function replace_whitespace {
+  local renamed=0
+  if [ "${1}" ] && [ -d "${1}" ]; then
+    for filename in "${1}"/*; do
+      echo "${filename}" | grep -q " "
+      if [ $? -eq 0 ]; then
+        mv "${filename}" $(echo "${filename}" | sed -e "s/ /_/g")
+        let renamed+=1
+      fi
+    done
+    echo "${renamed} file(s) renamed."
+  else
+    echo "Invalid path."
+  fi
+}
