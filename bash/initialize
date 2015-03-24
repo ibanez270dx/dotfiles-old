@@ -1,0 +1,25 @@
+#!/bin/bash
+
+###########################
+# Initializers
+###########################
+
+# Initialize Ruby Environment
+eval "$(rbenv init -)"
+
+# Bash Completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+  complete -o default -F _git g
+fi
+
+# Remove duplicate path entries
+export PATH=$(echo $PATH | awk -F: '
+{ for (i = 1; i <= NF; i++) arr[$i]; }
+END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
+
+# End Message
+printf "${RED}reloaded bash${NO_COLOR}\n";
+
+# Quote of the Moment
+random-quote
