@@ -6,6 +6,7 @@
 # Environment Variables
 export DOTFILES=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $DOTFILES/bash/variables
+source $DOTFILES/bash/secrets
 
 # Bash Configuration
 source $DOTFILES/bash/prompt

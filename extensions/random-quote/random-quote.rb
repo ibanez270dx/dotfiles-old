@@ -5,9 +5,6 @@ require 'colorize'
 # iheartquotes
 # http://www.iheartquotes.com/api/v1/random?show_permalink=false
 
-# brainyquote
-# http://www.brainyquote.com/quotes/keywords/random.html
-
 begin
   response = HTTParty.get('http://www.iheartquotes.com/api/v1/random?show_permalink=false')
   print "\n #{HTMLEntities.new.decode(response.to_s)} \n".bold
