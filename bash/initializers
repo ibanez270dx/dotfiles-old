@@ -5,7 +5,9 @@
 ###########################
 
 # Initialize Ruby Environment
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then
+  eval "$(rbenv init -)";
+fi
 
 # Bash Completion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
