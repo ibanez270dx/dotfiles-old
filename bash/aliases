@@ -22,9 +22,16 @@ alias mc="cd ${HOME}/Dev/moneyclip"
 alias superpups="cd ${HOME}/Dev/SuperPups"
 alias bb="cd ${HOME}/Dev/BlogBox"
 
+# Ruby
 alias be="bundle exec"                       # Bundler
-alias rb="rbenv"                             # RbEnv
+alias rv="rbenv"                             # RbEnv
 alias powr="touch ${HOME}/.pow/restart.txt"  # Pow
+
+# Rails
+alias railss="rails s -b 0.0.0.0"            # Let server be accessed remotely 
+
+# PHP
+alias phpserver="lighttpd -f /usr/local/etc/lighttpd/lighttpd.conf"
 
 ##################################################
 # Dotfiles
