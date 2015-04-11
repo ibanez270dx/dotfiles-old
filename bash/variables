@@ -6,7 +6,6 @@
 
 # System
 export EDITOR=vi
-export RAILS_ENV=development
 
 # Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
