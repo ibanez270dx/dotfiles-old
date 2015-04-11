@@ -60,7 +60,7 @@ function replace_whitespace {
     for filename in "${1}"/*; do
       echo "${filename}" | grep -q " "
       if [ $? -eq 0 ]; then
-        mv "${filename}" $(echo "${filename}" | sed -e "s/ /_/g")
+        mv "${filename}" $(echo "${filename}" | sed -e "s/ //g")
         let renamed+=1
       fi
     done
