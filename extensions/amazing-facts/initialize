@@ -1,0 +1,6 @@
+#!/bin/bash
+# Initialize "Amazing Facts" bash extension.
+#   Usage:
+#     > amazing-fact
+
+alias amazing-fact="ruby ${extension}amazing-facts.rb"
