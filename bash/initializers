@@ -18,5 +18,5 @@ fi
 # End Message
 printf "${RED}reloaded bash${NO_COLOR}\n";
 
-# Quote of the Moment
-random-quote
+# Amazing Fact
+amazing-fact

@@ -4,17 +4,23 @@
 # System
 ##################################################
 
+alias dnsfix="dscacheutil -flushcache"
 alias c="clear"
 alias h="history"
-alias l="ls -alshGt"
+alias l="ls -alhFGf"
 alias ip="ifconfig | grep \"inet \" | grep -v 127.0.0.1 | cut -d\  -f2"
 alias flushdscache="dscacheutil -flushcache"
 alias hosts="sudo ${EDITOR} /etc/hosts"
+
+# List all users
+alias users="dscl . list /Users | grep -v '^_'"
 
 ##################################################
 # Development
 ##################################################
 
+# Shortcuts
+alias home="cd ~"
 alias dev="cd ${HOME}/Dev"
 alias hu="cd ${HOME}/Dev/humani.se"
 alias ow="cd ${HOME}/Dev/overwine.io"
@@ -24,14 +30,13 @@ alias bb="cd ${HOME}/Dev/BlogBox"
 
 # Ruby
 alias be="bundle exec"                       # Bundler
-alias rv="rbenv"                             # RbEnv
+alias rb="rbenv"                             # RbEnv
+alias rehash="rbenv rehash"                  # Refresh RbEnv's shims
 alias powr="touch ${HOME}/.pow/restart.txt"  # Pow
+alias rails-s-local="rails s -b 0.0.0.0"     # Network Accessible
 
-# Rails
-alias railss="rails s -b 0.0.0.0"            # Let server be accessed remotely 
-
-# PHP
-alias phpserver="lighttpd -f /usr/local/etc/lighttpd/lighttpd.conf"
+# Electron
+alias electron="/Applications/Electron.app/Contents/MacOS/Electron"
 
 ##################################################
 # Dotfiles
@@ -43,7 +48,7 @@ alias ef="${EDITOR} ${DOTFILES}/bash/functions && reload"     # Edit Functions
 alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"     # Edit Variables
 alias es="${EDITOR} ${DOTFILES}/bash/secrets && reload"       # Edit Secrets
 alias ei="${EDITOR} ${DOTFILES}/bash/initializers && reload"  # Edit Initializers
-alias reload="source ${HOME}/.bashrc"
+alias reload="source ${HOME}/.bash_profile"
 
 ##################################################
 # Miscellaneous
