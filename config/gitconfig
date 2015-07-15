@@ -14,11 +14,8 @@
   pager = true
 [user]
 	name = Jeff Miller
-	email = loadeddesigns@gmail.com
+	email = jeff@humani.se
 [log]
   decorate = short
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
 [credential]
 	helper = osxkeychain
