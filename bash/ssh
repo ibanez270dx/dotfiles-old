@@ -1,0 +1,29 @@
+# #!/bin/bash
+
+############################################
+# SSH Color Wrapper
+############################################
+
+function ssh_color_wrapper() {
+  for param in "$@"; do
+    if [[ $param == *"@"* ]]; then
+      target=(${param//@/ });
+      domain=${target[1]};
+      if [[ $domain == "humani.se" ]]; then
+        iterm_bg 0 25 50 0.8;
+        iterm_fg 200 200 200;
+      fi
+      if [[ $domain == "172.16.160.168" || $domain == "staging" ]]; then
+        iterm_bg 241 196 15 0.9
+        iterm_fg 0 0 0
+      fi
+    fi
+  done
+
+  ssh $@;
+
+  iterm_bg 0 0 0 0.8
+  iterm_fg 200 200 200
+}
+
+alias ssh=ssh_color_wrapper;
