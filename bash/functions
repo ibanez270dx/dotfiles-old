@@ -1,23 +1,6 @@
 #!/bin/bash
 
 ###########################
-# Funny Or Die
-###########################
-
-function fod {
-  cd "${HOME}/Dev/funnyordie"
-  if [[ $1 == "restart" || $1 == "r" ]]; then
-    sudo powify server restart
-  elif [[ $1 == "p" || $1 == "periodic" ]]; then
-    ${HOME}/Dev/funnyordie/script/runner Periodic::Manager.run
-  elif [[ $1 == "t" || $1 == "tail" ]]; then
-    tail -f "${HOME}/Dev/funnyordie/log/development.log"
-  elif [[ $1 == "staging" ]]; then
-    ssh_color_wrapper capistrano@172.16.160.168;
-  fi
-}
-
-###########################
 # Ruby
 ###########################
 
