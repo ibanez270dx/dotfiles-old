@@ -4,3 +4,4 @@
 #     > amazing-fact
 
 alias amazing-fact="ruby ${extension}amazing-facts.rb"
+alias amazing-facts="ruby ${extension}amazing-facts.rb"

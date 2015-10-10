@@ -21,7 +21,7 @@ parser = OptionParser.new do |opts|
   end
 
   opts.on("-Y", "--yelp-images", "Download Yelp images") do |y|
-    options[:yelp_images] = y
+    options[:yelp_images] = true
   end
 
   opts.on_tail("-h", "--help", "What you're looking at") do
@@ -62,6 +62,7 @@ def parse_anchor(element)
 end
 
 def parse_image(element)
+  puts "hit parse image: #{element}"
   src = element.attributes["src"].value
   puts "src: #{src}"
   {
@@ -87,13 +88,15 @@ targets << 'img' if options[:with_images]
 
 # Exclusives
 targets = ['img'] if options[:images_only]
+targets = ['.photo-box-img'] if options[:yelp_images]
 
 # Start
 selector = targets.join(', ').chomp(', ')
+puts dom
 dom.css(selector).each do |element|
   item = case element.name
   when 'a' then parse_anchor(element)
-  when 'img' then parse_image(element)
+  when /img/ then parse_image(element)
   else
     puts "WTF, mate?"
     puts element.inspect

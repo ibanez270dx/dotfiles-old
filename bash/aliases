@@ -10,7 +10,9 @@ alias h="history"
 alias l="ls -alhFGf"
 alias ip="ifconfig | grep \"inet \" | grep -v 127.0.0.1 | cut -d\  -f2"
 alias flushdscache="dscacheutil -flushcache"
+alias cm="cmatrix"
 alias hosts="sudo ${EDITOR} /etc/hosts"
+alias locate.reindex="sudo /usr/libexec/locate.updatedb"
 
 # List all users
 alias users="dscl . list /Users | grep -v '^_'"
@@ -37,6 +39,10 @@ alias rails-s-local="rails s -b 0.0.0.0"     # Network Accessible
 
 # Electron
 alias electron="/Applications/Electron.app/Contents/MacOS/Electron"
+
+# Xcode
+alias xcode="open -a Xcode"
+
 
 ##################################################
 # Dotfiles

@@ -75,7 +75,7 @@ class AmazingFacts
   def display_history
     facts = @db.execute2 "SELECT id, fact, author, seen_at FROM #{@name} WHERE seen = 1 ORDER BY seen_at asc;"
     headers = facts.shift.collect{ |h| { value: h.cyan, alignment: :center } }
-    facts.collect!{ |fact| fact.collect{ |f| word_wrap(f.to_s) } }
+    facts.collect!{ |fact| fact.collect{ |f| word_wrap(f.to_s, line_width: 55) } }
     table = Terminal::Table.new do |t|
       t.title = "Fact History".bold
       t.headings = headers
