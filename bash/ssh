@@ -26,4 +26,4 @@ function ssh_color_wrapper() {
   iterm_fg 200 200 200
 }
 
-alias ssh=ssh_color_wrapper;
+# alias ssh=ssh_color_wrapper;

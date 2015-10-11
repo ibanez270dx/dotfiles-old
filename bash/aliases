@@ -22,15 +22,11 @@ alias users="dscl . list /Users | grep -v '^_'"
 # Shortcuts
 alias home="cd ~"
 alias dev="cd ${HOME}/Dev"
-alias cog="cd ${HOME}/Dev/cognoa"
 
 # Ruby
 alias be="bundle exec"                       # Bundler
 alias rb="rbenv"                             # RbEnv
 alias rehash="rbenv rehash"                  # Refresh RbEnv's shims
-
-# Cognoa
-alias acceptance="ssh -i ~/.ssh/cognoa-micro ubuntu@acceptance.cognoa.com"
 
 ##################################################
 # Dotfiles
@@ -43,4 +39,3 @@ alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"     # Edit Variables
 alias es="${EDITOR} ${DOTFILES}/bash/secrets && reload"       # Edit Secrets
 alias ei="${EDITOR} ${DOTFILES}/bash/initializers && reload"  # Edit Initializers
 alias reload="source ${HOME}/.bash_profile"
-
