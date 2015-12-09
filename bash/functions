@@ -1,25 +1,47 @@
 #!/bin/bash
 
+function colorme {
+  if [[ $1 == "blue" ]]; then
+    iterm_bg 12 25 50 0.8
+  elif [[ $1 == "red" ]]; then
+    iterm_bg 75 0 10 0.8
+  fi
+}
+
+
 ###########################
 # Cognoa
 ###########################
 
 function cog {
+  local did_ssh=false
   cd "${HOME}/Dev/cognoa"
 
   if [[ $1 == "production" || $1 == "prod" ]]; then
     echo "connecting to production.cognoa.com..."
     iterm_bg 75 0 10 0.8
     ssh -i "${HOME}/.ssh/cognoa-key.pem" ubuntu@production.cognoa.com
+    did_ssh=true
   elif [[ $1 == "acceptance" || $1 == "acc" ]]; then
     echo "connecting to acceptance.cognoa.com..."
-    iterm_bg 32 164 147 0.85
-    iterm_fg 0 0 0 1
+    iterm_bg 12 55 80 0.65
     ssh -i "${HOME}/.ssh/cognoa-key.pem" ubuntu@acceptance.cognoa.com
+    did_ssh=true
+  elif [[ $1 == "db:restore" ]]; then
+    if [ -e "$2" ]; then
+      dropdb cognoa_development
+      createdb cognoa_development
+      psql cognoa_development < "${2}"
+    else
+      echo "${2} doesn't exist"
+    fi
   fi
 
-  iterm_bg 0 0 0 0.7
-  iterm_fg 195 198 200 1
+  # Return terminal color to black
+  if [ "$did_ssh" == true ]; then
+    iterm_bg 0 0 0 0.7
+    iterm_fg 195 198 200 1
+  fi
 }
 alias cognoa="cog"
 
