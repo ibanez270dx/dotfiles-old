@@ -9,7 +9,7 @@ alias c="clear"
 alias h="history"
 alias l="ls -alhFGf"
 alias ip="ifconfig | grep \"inet \" | grep -v 127.0.0.1 | cut -d\  -f2"
-alias flushdscache="dscacheutil -flushcache"
+alias flushcache="dscacheutil -flushcache"
 alias hosts="sudo ${EDITOR} /etc/hosts"
 
 # List all users
@@ -20,6 +20,7 @@ alias users="dscl . list /Users | grep -v '^_'"
 ##################################################
 
 # Shortcuts
+alias ~="cd ~"
 alias home="cd ~"
 alias dev="cd ${HOME}/Dev"
 
