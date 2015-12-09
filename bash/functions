@@ -32,6 +32,25 @@ uninstall_all_gems() {
 }
 
 ###########################
+# Chrome Extensions
+###########################
+
+function copy-chrome-extension {
+  if [ -n "$1" ]; then
+    local name=${1};
+    
+    # optionally name the destination folder
+    if [ -n "$2" ]; then name=${2}; fi
+      
+    # copy if the destination folder doesn't exist
+    if [ ! -d "${HOME}/Dev/ChromeExtensions/${name}" ]; then
+      echo "copying ${1} to Dev/ChromeExtensions/${name} ..."
+      cp -R ${HOME}/Library/Application\ Support/Google/Chrome/Default/Extensions/${1} ${HOME}/Dev/ChromeExtensions/${name}
+    fi 
+ fi
+}
+
+###########################
 # MySQL
 ###########################
 

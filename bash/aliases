@@ -20,13 +20,15 @@ alias users="dscl . list /Users | grep -v '^_'"
 ##################################################
 
 # Shortcuts
-alias home="cd ~"
+alias ~="cd ~"
 alias dev="cd ${HOME}/Dev"
 alias hu="cd ${HOME}/Dev/humani.se"
 alias ow="cd ${HOME}/Dev/overwine.io"
 alias mc="cd ${HOME}/Dev/moneyclip"
 alias superpups="cd ${HOME}/Dev/SuperPups"
 alias bb="cd ${HOME}/Dev/BlogBox"
+
+alias chrx="cd ${HOME}/Library/Application\ Support/Google/Chrome/Default/Extensions"
 
 # Ruby
 alias be="bundle exec"                       # Bundler
