@@ -60,7 +60,7 @@ ps1_git() {
 
 ps1_gituser() {
   gituser=$(git config user.email)
-  if [[ "${gituser}" != "loadeddesigns@gmail.com" ]]; then
+  if [[ "${gituser}" != "jeff@humani.se" ]]; then
     echo -e "\[\033[33m\]as ${gituser}\[\033[0m\] "
   fi
 }
