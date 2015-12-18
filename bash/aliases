@@ -6,7 +6,7 @@
 
 alias c="clear"
 alias h="history"
-alias l="ls -alshGt"
+alias l="ls -alshFG"
 alias hosts="sudo ${EDITOR} /etc/hosts"
 
 ##################################################
@@ -19,9 +19,12 @@ alias bb="cd /srv/BlogBox"
 
 # Nginx
 alias nginx-dir="cd ${NGINX_DIR}"
+alias nginx-restart="sudo nginx -s reload"
 
 # Ruby / Rails
 alias be="bundle exec"   # Bundler
+alias unicorn-start="unicorn_rails -c config/unicorn.rb -D"
+alias unicorn-pid="cat tmp/unicorn.pid"
 
 # Temporary
 alias giannacodes="cd /srv/gianna.codes"
@@ -35,5 +38,5 @@ alias dotfiles="cd ${DOTFILES}"
 alias ea="${EDITOR} ${DOTFILES}/bash/aliases && reload"    # Edit Aliases
 alias ef="${EDITOR} ${DOTFILES}/bash/functions && reload"  # Edit Functions
 alias ev="${EDITOR} ${DOTFILES}/bash/variables && reload"  # Edit Variables
-alias es="${EDITOR} ${DOTFILES}/bash/variables && reload"  # Edit Secrets
+alias es="${EDITOR} ${DOTFILES}/bash/secrets && reload"  # Edit Secrets
 alias reload="source ${HOME}/.bashrc"

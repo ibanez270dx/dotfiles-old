@@ -4,7 +4,7 @@
 # http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html
 
 # Environment Variables
-export DOTFILES=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+export DOTFILES="/home/deploy/.dotfiles/"
 source $DOTFILES/bash/variables
 source $DOTFILES/bash/secrets
 

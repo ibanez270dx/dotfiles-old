@@ -11,4 +11,4 @@ eval "$(rbenv init -)"
 printf "${RED}reloaded bash${NO_COLOR}\n";
 
 # Quote of the Moment
-random-quote
+#random-quote
