@@ -12,7 +12,9 @@ source $DOTFILES/bash/secrets
 source $DOTFILES/bash/prompt
 source $DOTFILES/bash/colors
 source $DOTFILES/bash/aliases
-source $DOTFILES/bash/functions
+source $DOTFILES/bash/functions/utility
+source $DOTFILES/bash/functions/development
+source $DOTFILES/bash/functions/projects
 source $DOTFILES/bash/ssh
 
 # Load Extensions

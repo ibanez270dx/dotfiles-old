@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#################################################
+# Chrome Extensions
+#################################################
+
+function copy-chrome-extension {
+  if [ -n "$1" ]; then
+    local name=${1};
+    # optionally name the destination folder
+    if [ -n "$2" ]; then name=${2}; fi
+    # copy if the destination folder doesn't exist
+    if [ ! -d "${HOME}/Dev/ChromeExtensions/${name}" ]; then
+      echo "copying ${1} to Dev/ChromeExtensions/${name} ..."
+      cp -R ${HOME}/Library/Application\ Support/Google/Chrome/Default/Extensions/${1} ${HOME}/Dev/ChromeExtensions/${name}
+    fi
+ fi
+}
+
+#################################################
+# Ruby
+#################################################
+
+# pass rails version: uninstall_all_gems 2.2.2
+uninstall_all_gems() {
+  list=`gem list --no-versions`
+  for gem in $list; do
+    gem uninstall ${1} $gem -aIx
+  done
+  gem list
+}
+
+#################################################
+# Rails / MySQL
+#################################################
+
+# Backup a table. Naming defaults to *_backup, pass additional argument for *_whatever.
+function backup_table {
+    local t1=${1}
+    local t2=${1}_${2:-backup}
+    rails db << EOF
+    \! echo "dropping $t2 if it exists..."
+    drop table if exists $t2;
+    \! echo "creating $t2..."
+    create table $t2 like $t1;
+    \! echo "copying $t1 to $t2..."
+    insert into $t2 select * from $t1;
+    \! echo "Done!"
+    select count(*) from $t2;
+EOF
+}
+
+# Restore a table. Assumes *_backup, pass additional argument for *_whatever.
+function restore_table {
+  local t1=${1}
+  local t2=${1}_${2:-backup}
+  rails db << EOF
+    \! echo "dropping $t1..."
+    drop table $1;
+    \! echo "creating $t1..."
+    create table $t1 like $t2;
+    \! echo "copying $t2 to $t1...";
+    insert into $t1 select * from $t2;
+    \! echo "Done!"
+    select count(*) from $t1;
+EOF
+}

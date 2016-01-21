@@ -1,3 +1,6 @@
+# IRB Tools
+# require 'irbtools'
+
 # Pretty printing
 require "awesome_print"
 

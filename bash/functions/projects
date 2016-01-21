@@ -1,0 +1,115 @@
+#!/bin/bash
+
+##################################################
+# BettrLink
+##################################################
+
+function btr {
+  # Chrome Extension
+  if [[ $1 == "chrome" || $1 == "chr" || $1 == "c" ]]; then
+    echo "bettrlink chrome extension..."
+    cd $HOME/Dev/bettrlink-chrome/
+
+  # Rails Application
+  elif [[ $1 == "rails" || $1 == "web" || $1 == "w" || $1 == "app" ]]; then
+    echo "bettrlink rails application..."
+    local phantomjs_version=$(phantomjs -v)
+    cd $HOME/Dev/bettrlink/
+
+    # Switch PhantomJS version
+    if [ "$phantomjs_version" != "2.0.0" ]; then
+      brew unlink phantomjs182
+      brew link phantomjs
+    fi
+
+    # Restart POW server
+    if [[ $2 == "r" || $2 == "restart" ]]; then
+      echo "restarting pow..."
+      sudo powify server stop
+      sudo powify server start
+      echo "processes grep'd for \"pow\":"
+      ps aux | grep pow
+
+    # Tail POW server
+    elif [[ $2 == "t" || $2 == "tail"  || $2 == "l" || $2 == "log" ]]; then
+      tail -f ${HOME}/Dev/bettrlink/log/development.log
+    fi
+  else
+    echo "No arguments specified."
+  fi
+}
+alias bettrlink="btr"
+
+##################################################
+# Cognoa
+##################################################
+
+function cog {
+  local did_ssh=false
+  local phantomjs_version=$(phantomjs -v)
+
+  # Open project directory and ensure correct version of phantomJS
+  cd "${HOME}/Dev/cognoa"
+  if [ "$phantomjs_version" == "2.0.0" ]; then
+    brew unlink phantomjs
+    brew link phantomjs182
+  fi
+
+  # SSH routines
+  if [[ $1 == "production" || $1 == "prod" ]]; then
+    echo "connecting to production.cognoa.com..."
+    iterm_bg 75 0 10 0.8
+    ssh -i "${HOME}/.ssh/cognoa-key.pem" ubuntu@production.cognoa.com
+    did_ssh=true
+  elif [[ $1 == "acceptance" || $1 == "acc" ]]; then
+    echo "connecting to acceptance.cognoa.com..."
+    iterm_bg 12 55 80 0.65
+    ssh -i "${HOME}/.ssh/cognoa-key.pem" ubuntu@acceptance.cognoa.com
+    did_ssh=true
+  fi
+
+  # Database Snapshots
+  if [[ $1 == "db:restore" ]]; then
+    if [ -e "$2" ]; then
+      dropdb cognoa_development
+      createdb cognoa_development
+      psql cognoa_development < "${2}"
+    else
+      echo "${2} doesn't exist"
+    fi
+  fi
+
+  # Return terminal color to black
+  if [ "$did_ssh" == true ]; then
+    iterm_bg 0 0 0 0.7
+    iterm_fg 195 198 200 1
+  fi
+}
+alias cognoa="cog"
+
+##################################################
+# Dotfiles
+##################################################
+
+# TODO: link function
+# * should comment out all bash initialization scripts and source the .dotfile version
+
+# TODO: unlink function
+# * should remove sourcing of .dotfile initializers and uncomment bash initialization scripts
+
+function dotfiles {
+  if [[ $1 == "e" || $1 == "edit" ]]; then
+    atom "${DOTFILES}/."
+  elif [[ $1 == "link" ]]; then
+    for file in $DOTFILES/config/{.,}*; do
+      local tail1=${file:(-3)}
+      local tail2=${file:(-2)}
+      if [[ "$tail1" != "/.." && "$tail2" != "/." ]]; then
+        echo "--> $file"
+        ln -s "$file" "" 
+      fi
+    done
+  else
+    cd "${DOTFILES}"
+  fi
+}

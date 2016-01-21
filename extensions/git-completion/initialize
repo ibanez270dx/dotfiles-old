@@ -1,7 +1,0 @@
-#!/bin/bash
-#
-# Initialize git completion bash extension.
-#
-
-# just source the script
-source ${extension}git-completion
